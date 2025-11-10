@@ -3,6 +3,7 @@ package hexlet.code;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
+import picocli.CommandLine.Option;
 
 import java.util.concurrent.Callable;
 
@@ -13,11 +14,17 @@ import java.util.concurrent.Callable;
 )
 public class App implements Callable<Integer> {
 
-    @Parameters(paramLabel = "filePath1")
+    @Parameters(paramLabel = "filePath1", description = "path to first file")
     private String filePath1;
 
-    @Parameters(paramLabel = "filePath2")
+    @Parameters(paramLabel = "filePath2", description = "path to second file")
     private String filePath2;
+
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish",
+            paramLabel = "format",
+            description = "output format [default: ${DEFAULT-VALUE}]"
+    )
+    private String format;
 
     @Override
     public Integer call() throws Exception {
