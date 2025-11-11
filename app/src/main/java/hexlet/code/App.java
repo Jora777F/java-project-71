@@ -32,7 +32,7 @@ public class App implements Callable<Integer> {
             String difference = Differ.generate(filePath1, filePath2, format);
             System.out.println(difference);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println("Error: " + e);
         }
 
         return 0;
