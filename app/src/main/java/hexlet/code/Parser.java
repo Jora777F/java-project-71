@@ -14,8 +14,8 @@ public class Parser {
 
     public static Map<String, Object> parsingFormat(String data, String format) throws Exception {
         return switch (format) {
-            case "json" -> JSON_MAPPER.readValue(data, new TypeReference<>() {});
-            case "yaml", "yml" -> YAML_MAPPER.readValue(data, new TypeReference<>() {});
+            case "json" -> JSON_MAPPER.readValue(data, new TypeReference<>() { });
+            case "yaml", "yml" -> YAML_MAPPER.readValue(data, new TypeReference<>() { });
             default -> throw new IllegalArgumentException("Unsupported format: " + format);
         };
     }
