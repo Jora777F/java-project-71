@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Set;
@@ -18,9 +19,12 @@ public class Differ {
      * @throws Exception исключение, которое может возникнуть во время работы
      */
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
+        Path path1 = Paths.get(filepath1).toAbsolutePath().normalize();
+        Path path2 = Paths.get(filepath2).toAbsolutePath().normalize();
+
         // Читаем содержимое файлов
-        String content1 = Files.readString(Paths.get(filepath1));
-        String content2 = Files.readString(Paths.get(filepath2));
+        String content1 = Files.readString(path1);
+        String content2 = Files.readString(path2);
 
         // Определяем формат файлов по расширению
         String fileFormat = getFileFormat(filepath1);
@@ -58,7 +62,7 @@ public class Differ {
                 result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
             } else {
                 // Ключ только во втором файле
-                result.append("  - ").append(key).append(": ").append(data2.get(key)).append("\n");
+                result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
             }
         }
 
