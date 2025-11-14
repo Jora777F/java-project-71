@@ -3,6 +3,7 @@ plugins {
     id("application")
     id("com.github.ben-manes.versions") version "0.53.0"
     id("org.sonarqube") version "7.0.1.6134"
+    id("jacoco")
 }
 
 group = "hexlet.code"
@@ -31,9 +32,20 @@ sonar {
     properties {
         property("sonar.projectKey", "Jora777F_java-project-71")
         property("sonar.organization", "jora777f")
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
 }
