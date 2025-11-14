@@ -18,4 +18,5 @@ class AppTest {
 
         System.out.println("Hello World!");
     }
+    //TODO: Написать модульные тесты
 }
