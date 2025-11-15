@@ -1,8 +1,12 @@
 package hexlet.code;
 
+import hexlet.code.formatters.Formatter;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -33,12 +37,24 @@ public class Differ {
         Map<String, Object> data1 = Parser.parsingFormat(content1, fileFormat);
         Map<String, Object> data2 = Parser.parsingFormat(content2, fileFormat);
 
+        List<DiffNode> diff = buildDiff(data1, data2);
+
+        return Formatter.format(diff, format);
+    }
+
+    /**
+     * Вычисляет различия между файлами и возвращает список {@link DiffNode}.
+     * @param data1 первая структура
+     * @param data2 вторая структура
+     * @return список с различиями
+     */
+    private static List<DiffNode> buildDiff(Map<String, Object> data1, Map<String, Object> data2) {
+        List<DiffNode> diff = new ArrayList<>();
+
         // Собираем все ключи и сортируем
         Set<String> allKeys = new TreeSet<>();
         allKeys.addAll(data1.keySet());
         allKeys.addAll(data2.keySet());
-
-        StringBuilder result = new StringBuilder("{\n");
 
         for (String key : allKeys) {
             boolean inFile1 = data1.containsKey(key);
@@ -49,25 +65,18 @@ public class Differ {
                 Object value2 = data2.get(key);
 
                 if (isEqual(value1, value2)) {
-                    // Значения одинаковые
-                    result.append("    ").append(key).append(": ").append(value1).append("\n");
+                    diff.add(new DiffNode(key, value1, value2, DiffNode.Status.UNCHANGED));
                 } else {
-                    // Значения разные - сначала из первого файла, потом из второго
-                    result.append("  - ").append(key).append(": ").append(value1).append("\n");
-                    result.append("  + ").append(key).append(": ").append(value2).append("\n");
+                    diff.add(new DiffNode(key, value1, value2, DiffNode.Status.CHANGED));
                 }
-
             } else if (inFile1) {
-                // Ключ только в первом файле
-                result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
+                diff.add(new DiffNode(key, data1.get(key), null, DiffNode.Status.REMOVED));
             } else {
-                // Ключ только во втором файле
-                result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
+                diff.add(new DiffNode(key, null, data2.get(key), DiffNode.Status.ADDED));
             }
         }
 
-        result.append("}");
-        return result.toString();
+        return diff;
     }
 
     private static String getFileFormat(String filepath) {
