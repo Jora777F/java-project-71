@@ -38,6 +38,8 @@ public class App implements Callable<Integer> {
         return 0;
     }
 
+    //TODO: Установить формат stylish по умолчанию
+
     public static void main(String[] args) {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
