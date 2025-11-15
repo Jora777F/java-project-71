@@ -14,6 +14,18 @@ import java.util.TreeSet;
 public class Differ {
 
     /**
+     * Метод сравнивает два файла и генерирует на их основе строку в формате stylish.
+     *
+     * @param filepath1 путь до первого файла
+     * @param filepath2 путь до второго файла
+     * @return сгенерированная строка
+     * @throws Exception исключение, которое может возникнуть во время работы
+     */
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        return generate(filepath1, filepath2, "stylish");
+    }
+
+    /**
      * Метод сравнивает два файла и генерирует на их основе строку в выбранном формате.
      *
      * @param filepath1 путь до первого файла
