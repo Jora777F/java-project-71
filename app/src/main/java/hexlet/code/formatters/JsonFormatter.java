@@ -8,6 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author mikhail
+ * <p>
+ * Данный класс создает валидный JSON массив элементов.
+ */
 public class JsonFormatter {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
