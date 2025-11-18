@@ -1,72 +1,79 @@
 [ {
-  "value" : [ "a", "b", "c" ],
   "key" : "chars1",
-  "status" : "unchanged"
+  "oldValue" : [ "a", "b", "c" ],
+  "newValue" : [ "a", "b", "c" ],
+  "status" : "UNCHANGED"
 }, {
-  "newValue" : false,
-  "oldValue" : [ "d", "e", "f" ],
   "key" : "chars2",
-  "status" : "changed"
+  "oldValue" : [ "d", "e", "f" ],
+  "newValue" : false,
+  "status" : "CHANGED"
 }, {
-  "newValue" : true,
-  "oldValue" : false,
   "key" : "checked",
-  "status" : "changed"
+  "oldValue" : false,
+  "newValue" : true,
+  "status" : "CHANGED"
 }, {
-  "newValue" : [ "value1", "value2" ],
-  "oldValue" : null,
   "key" : "default",
-  "status" : "changed"
+  "oldValue" : null,
+  "newValue" : [ "value1", "value2" ],
+  "status" : "CHANGED"
 }, {
-  "newValue" : null,
-  "oldValue" : 45,
   "key" : "id",
-  "status" : "changed"
+  "oldValue" : 45,
+  "newValue" : null,
+  "status" : "CHANGED"
 }, {
-  "value" : "value1",
   "key" : "key1",
-  "status" : "removed"
+  "oldValue" : "value1",
+  "newValue" : null,
+  "status" : "REMOVED"
 }, {
-  "value" : "value2",
   "key" : "key2",
-  "status" : "added"
+  "oldValue" : null,
+  "newValue" : "value2",
+  "status" : "ADDED"
 }, {
-  "value" : [ 1, 2, 3, 4 ],
   "key" : "numbers1",
-  "status" : "unchanged"
+  "oldValue" : [ 1, 2, 3, 4 ],
+  "newValue" : [ 1, 2, 3, 4 ],
+  "status" : "UNCHANGED"
 }, {
-  "newValue" : [ 22, 33, 44, 55 ],
-  "oldValue" : [ 2, 3, 4, 5 ],
   "key" : "numbers2",
-  "status" : "changed"
+  "oldValue" : [ 2, 3, 4, 5 ],
+  "newValue" : [ 22, 33, 44, 55 ],
+  "status" : "CHANGED"
 }, {
-  "value" : [ 3, 4, 5 ],
   "key" : "numbers3",
-  "status" : "removed"
+  "oldValue" : [ 3, 4, 5 ],
+  "newValue" : null,
+  "status" : "REMOVED"
 }, {
-  "value" : [ 4, 5, 6 ],
   "key" : "numbers4",
-  "status" : "added"
+  "oldValue" : null,
+  "newValue" : [ 4, 5, 6 ],
+  "status" : "ADDED"
 }, {
-  "value" : {
+  "key" : "obj1",
+  "oldValue" : null,
+  "newValue" : {
     "nestedKey" : "value",
     "isNested" : true
   },
-  "key" : "obj1",
-  "status" : "added"
+  "status" : "ADDED"
 }, {
-  "newValue" : "Another value",
-  "oldValue" : "Some value",
   "key" : "setting1",
-  "status" : "changed"
+  "oldValue" : "Some value",
+  "newValue" : "Another value",
+  "status" : "CHANGED"
 }, {
-  "newValue" : 300,
-  "oldValue" : 200,
   "key" : "setting2",
-  "status" : "changed"
+  "oldValue" : 200,
+  "newValue" : 300,
+  "status" : "CHANGED"
 }, {
-  "newValue" : "none",
-  "oldValue" : true,
   "key" : "setting3",
-  "status" : "changed"
+  "oldValue" : true,
+  "newValue" : "none",
+  "status" : "CHANGED"
 } ]
