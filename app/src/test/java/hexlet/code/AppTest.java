@@ -38,12 +38,8 @@ class AppTest {
         String filePath1 = getFixtureAbsolutePath("file1" + format);
         String filePath2 = getFixtureAbsolutePath("file2" + format);
 
-        assertEquals(normalize(stylishOutput), Differ.generate(filePath1, filePath2, "stylish"));
-        assertEquals(normalize(plainOutput), Differ.generate(filePath1, filePath2, "plain"));
+        assertEquals(stylishOutput, Differ.generate(filePath1, filePath2, "stylish"));
+        assertEquals(plainOutput, Differ.generate(filePath1, filePath2, "plain"));
         assertEquals(jsonOutput, Differ.generate(filePath1, filePath2, "json"));
-    }
-
-    private static String normalize(String str) {
-        return str.replace("\r\n", "\n").replace("\r", "\n");
     }
 }
