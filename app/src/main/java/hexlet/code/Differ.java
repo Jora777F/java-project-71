@@ -42,7 +42,7 @@ public class Differ {
         String content1 = Files.readString(path1);
         String content2 = Files.readString(path2);
 
-        // Определяем формат файлов по расширению
+        // Определяем формат файлов
         String fileFormat = getFileFormat(filepath1);
 
         // Парсинг файлов в Map
@@ -56,6 +56,7 @@ public class Differ {
 
     /**
      * Вычисляет различия между файлами и возвращает список {@link DiffNode}.
+     *
      * @param data1 первая структура
      * @param data2 вторая структура
      * @return список с различиями
@@ -91,14 +92,18 @@ public class Differ {
         return diff;
     }
 
+    /**
+     * Возвращает формат (расширение) файла.
+     * <p>Если у файла отсутствует расширение, выбрасывается {@link IllegalArgumentException}.</p>
+     * @param filepath файл, для которого следует определить формат
+     * @return расширение файла
+     */
     private static String getFileFormat(String filepath) {
-        if (filepath.endsWith(".json")) {
-            return "json";
-        } else if (filepath.endsWith(".yml") || filepath.endsWith(".yaml")) {
-            return "yaml";
+        int lastDotIndex = filepath.lastIndexOf(".");
+        if (lastDotIndex == -1 || lastDotIndex == filepath.length() - 1) {
+            throw new IllegalArgumentException("File has no extension: " + filepath);
         }
-
-        throw new IllegalArgumentException("Unsupported file format: " + filepath);
+        return filepath.substring(lastDotIndex + 1);
     }
 
     private static boolean isEqual(Object obj1, Object obj2) {
