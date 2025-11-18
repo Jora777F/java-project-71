@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -77,7 +78,7 @@ public class Differ {
                 Object value1 = data1.get(key);
                 Object value2 = data2.get(key);
 
-                if (isEqual(value1, value2)) {
+                if (Objects.equals(value1, value2)) {
                     diff.add(new DiffNode(key, value1, value2, DiffNode.Status.UNCHANGED));
                 } else {
                     diff.add(new DiffNode(key, value1, value2, DiffNode.Status.CHANGED));
@@ -104,15 +105,5 @@ public class Differ {
             throw new IllegalArgumentException("File has no extension: " + filepath);
         }
         return filepath.substring(lastDotIndex + 1);
-    }
-
-    private static boolean isEqual(Object obj1, Object obj2) {
-        if (obj1 == null && obj2 == null) {
-            return true;
-        }
-        if (obj1 == null || obj2 == null) {
-            return false;
-        }
-        return obj1.equals(obj2);
     }
 }
