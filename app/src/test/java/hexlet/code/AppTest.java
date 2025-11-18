@@ -38,6 +38,7 @@ class AppTest {
         String filePath1 = getFixtureAbsolutePath("file1" + format);
         String filePath2 = getFixtureAbsolutePath("file2" + format);
 
+        assertEquals(stylishOutput, Differ.generate(filePath1, filePath2));
         assertEquals(stylishOutput, Differ.generate(filePath1, filePath2, "stylish"));
         assertEquals(plainOutput, Differ.generate(filePath1, filePath2, "plain"));
         assertEquals(jsonOutput, Differ.generate(filePath1, filePath2, "json"));
